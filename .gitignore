@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+venv/
+
+# Environment
+.env
+
+# Build / IDE
+target/
+bin/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

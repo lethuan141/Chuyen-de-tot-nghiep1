@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="smart-crm-l2-buoi4" name="Use Case L2 - Buoi 4">
+    <mxGraphModel dx="2020" dy="1929" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="system" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=16;" value="" vertex="1">
+          <mxGeometry height="1060" width="740" x="195" y="-210" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;whiteSpace=wrap;html=1;fontStyle=1;fontSize=16;align=center;" value="SMART CRM – L2: TIẾP NHẬN VÀ PHÂN LOẠI YÊU CẦU BẢO HÀNH" vertex="1">
+          <mxGeometry height="60" width="680" x="225" y="-195" as="geometry" />
+        </mxCell>
+        <mxCell id="actor1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;" value="Nhân viên tiếp nhận" vertex="1">
+          <mxGeometry height="160" width="120" x="20" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="actor2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;" value="Quản lý trung tâm" vertex="1">
+          <mxGeometry height="160" width="120" x="990" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC01&lt;br&gt;Tra cứu khách hàng" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="uc02" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC02&lt;br&gt;Tạo hồ sơ khách hàng" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="uc03" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC03&lt;br&gt;Ghi nhận thiết bị" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc04" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC04&lt;br&gt;Kiểm tra tình trạng bảo hành" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="uc05" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;strokeWidth=2;" value="UC05&lt;br&gt;Tạo phiếu bảo hành (Đặc tả)" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC06&lt;br&gt;Ghi nhận mô tả lỗi" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="uc07" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC07&lt;br&gt;Phân loại nhóm sự cố" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uc08" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC08&lt;br&gt;Xác định mức ưu tiên" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="uc09" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=13;" value="UC09&lt;br&gt;Tính hạn cam kết" vertex="1">
+          <mxGeometry height="60" width="250" x="390" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="conn1" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn2" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn3" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn4" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn5" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn6" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn7" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc07">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn8" edge="1" parent="1" source="actor1" style="endArrow=none;html=1;rounded=0;" target="uc08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_mgr" edge="1" parent="1" source="uc04" style="endArrow=none;html=1;rounded=0;" target="actor2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_inc" edge="1" parent="1" source="uc09" style="endArrow=none;dashed=1;html=1;rounded=0;startArrow=classic;startFill=1;" target="uc08">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_inc" connectable="0" parent="conn_inc" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;I&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/I&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.18" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6IqQ7yAkQtT1jYItEXyx-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=20;" value="&lt;b&gt;Ghi chú:&lt;/b&gt; UC05 – Tạo phiếu bảo hành là Use Case quan trọng nhất, được đặc tả chi tiết trong SRS." vertex="1">
+          <mxGeometry height="55" width="650" x="260" y="700" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
