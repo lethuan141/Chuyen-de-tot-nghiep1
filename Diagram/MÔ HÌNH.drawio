@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="v2J6mg3ulnLHE97Xx-gT">
+    <mxGraphModel dx="1030" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#E2E8F0;fillColor=#FFFFFF;arcSize=1;" value="" vertex="1">
+          <mxGeometry height="520" width="620" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="block_actor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=none;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="85" width="570" x="65" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#0F172A;" value="TÁC NHÂN" vertex="1">
+          <mxGeometry height="25" width="570" x="65" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="Nhân viên tiếp nhận / Quản lý trung tâm" vertex="1">
+          <mxGeometry height="25" width="570" x="65" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#475569;fontStyle=1;" value="↓" vertex="1">
+          <mxGeometry height="25" width="50" x="325" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="block_frontend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBE7FD;strokeColor=none;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="105" width="570" x="65" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#0F172A;" value="LỚP GIAO DIỆN — FRONTEND" vertex="1">
+          <mxGeometry height="25" width="570" x="65" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_sub1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="HTML / CSS / JavaScript" vertex="1">
+          <mxGeometry height="22" width="570" x="65" y="222" as="geometry" />
+        </mxCell>
+        <mxCell id="fe_sub2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="Nhập dữ liệu, tra cứu, hiển thị kết quả" vertex="1">
+          <mxGeometry height="22" width="570" x="65" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#475569;fontStyle=1;" value="↓↑" vertex="1">
+          <mxGeometry height="25" width="50" x="325" y="287" as="geometry" />
+        </mxCell>
+        <mxCell id="block_backend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=none;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="105" width="570" x="65" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="be_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#0F172A;" value="LỚP XỬ LÝ NGHIỆP VỤ — BACKEND" vertex="1">
+          <mxGeometry height="25" width="570" x="65" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="be_sub1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="Python + FastAPI" vertex="1">
+          <mxGeometry height="22" width="570" x="65" y="357" as="geometry" />
+        </mxCell>
+        <mxCell id="be_sub2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="REST API, validation, phân loại sự cố, ưu tiên, tính SLA" vertex="1">
+          <mxGeometry height="22" width="570" x="65" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#475569;fontStyle=1;" value="↓↑" vertex="1">
+          <mxGeometry height="25" width="50" x="325" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="block_db" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=none;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="95" width="570" x="65" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="db_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#0F172A;" value="LỚP DỮ LIỆU — DATABASE" vertex="1">
+          <mxGeometry height="25" width="570" x="65" y="462" as="geometry" />
+        </mxCell>
+        <mxCell id="db_sub1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#334155;" value="MySQL" vertex="1">
+          <mxGeometry height="20" width="570" x="65" y="489" as="geometry" />
+        </mxCell>
+        <mxCell id="db_sub2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#334155;" value="customers, devices, warranty_tickets, staff_users, issue_types, priorities, ticket_status_history" vertex="1">
+          <mxGeometry height="20" width="570" x="65" y="512" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
