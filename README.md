@@ -18,19 +18,48 @@ Phạm vi nghiệp vụ chính:
 - Xác định mức độ ưu tiên.
 - Sinh hạn cam kết xử lý.
 
-## 2. Môi trường thực hiện
+## ## 2. Môi trường thực hiện
 
-Repository chủ yếu lưu trữ tài liệu phân tích và đặc tả yêu cầu phần mềm trong khuôn khổ Buổi 04. Vì vậy, bài thực hành không yêu cầu triển khai backend, frontend hoặc cơ sở dữ liệu thực tế.
+Dự án sử dụng Python, FastAPI và MySQL để xây dựng API phục vụ luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
-Môi trường đề xuất:
+### 2.1. Yêu cầu môi trường
 
 - **Hệ điều hành:** Windows 10/11.
+- **Ngôn ngữ lập trình:** Python 3.11.
+- **Framework backend:** FastAPI 0.115.6.
+- **ASGI server:** Uvicorn 0.34.0.
+- **Cơ sở dữ liệu:** MySQL Server 8.0 trở lên.
+- **Thư viện kết nối MySQL:** PyMySQL.
+- **Quản lý biến môi trường:** python-dotenv.
 - **Quản lý mã nguồn:** Git và GitHub.
-- **Chỉnh sửa sơ đồ:** draw.io Desktop hoặc draw.io trên trình duyệt.
-- **Soạn thảo tài liệu:** Visual Studio Code hoặc trình soạn thảo Markdown tương đương.
-- **Ngôn ngữ tài liệu:** Markdown.
-- **Định dạng sơ đồ:** `.drawio`.
+- **Công cụ kiểm thử API:** Swagger UI tại `/docs`.
+- **Công cụ chỉnh sửa:** Visual Studio Code hoặc trình soạn thảo tương đương.
 
+### 2.2. Cài đặt và khởi chạy
+
+Cài đặt các thư viện cần thiết:
+
+```bash
+pip install fastapi==0.115.6 uvicorn==0.34.0 PyMySQL python-dotenv
+```
+
+Tạo file `.env` tại thư mục gốc dự án và cấu hình thông tin kết nối MySQL theo mẫu trong `.env.example`.
+
+Đảm bảo MySQL đang hoạt động và cơ sở dữ liệu `smart_crm_mekong_mobile` đã được tạo. Có thể sử dụng các script SQL trong `migrations/` và `seed/` để tạo bảng và nạp dữ liệu mẫu khi cần.
+
+Khởi chạy API:
+
+```bash
+python -m uvicorn src.main:app --reload
+```
+
+Truy cập Swagger UI:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+**Lưu ý:** Không đưa file `.env`, mật khẩu cơ sở dữ liệu hoặc khóa bí mật lên GitHub. Chỉ sử dụng `.env.example` để cung cấp cấu hình mẫu.
 Không yêu cầu khởi chạy server hoặc kết nối cơ sở dữ liệu để đọc và kiểm tra các tài liệu phân tích.
 
 ## 3. Cấu trúc repository
@@ -110,23 +139,53 @@ Các tệp `.drawio` có thể được mở và chỉnh sửa bằng draw.io De
 7. Nhân viên tạo phiếu bảo hành với các thông tin bắt buộc hợp lệ.
 8. Hệ thống sinh mã phiếu, xác định hạn cam kết theo quy tắc nghiệp vụ và lưu thông tin cần thiết.
 
-## 6. Kết quả thực hiện Buổi 04
+## ## 6. Trạng thái tiến độ hiện tại
 
-Các sản phẩm phân tích và đặc tả yêu cầu được xây dựng trong phạm vi bài thực hành gồm:
+Dự án đã chuyển từ giai đoạn phân tích và đặc tả yêu cầu sang giai đoạn hiện thực backend ban đầu cho luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
-- Hoàn thành tài liệu SRS cho luồng L2.
-- Xây dựng User Story và Acceptance Criteria theo phương pháp Given – When – Then.
-- Xác định danh sách 9 Use Case và vai trò của các Actor.
-- Đặc tả chi tiết UC05 – Tạo phiếu bảo hành.
-- Xác định các yêu cầu chức năng (FR) và yêu cầu phi chức năng (NFR).
-- Xây dựng bảng truy vết giữa User Story, Use Case và Functional Requirement.
-- Xây dựng Use Case Diagram bằng draw.io.
-- Xây dựng Business Flow cho quy trình tiếp nhận và phân loại yêu cầu bảo hành.
-- Xây dựng API Contract đề xuất cho Track SE.
-- Hoàn thiện tài liệu AI Disclosure.
-- Hoàn thiện cấu trúc repository và các tệp cấu hình Git cơ bản.
+### 6.1. Cấu trúc mã nguồn
 
-Các tài liệu được tổ chức trong `docs/` và các sơ đồ được lưu trong `diagrams/` theo cấu trúc repository.
+Đã xây dựng cấu trúc phân lớp trong `src/`, gồm:
+
+- `src/routes/`: Tiếp nhận và xử lý các yêu cầu HTTP.
+- `src/services/`: Xử lý logic nghiệp vụ.
+- `src/repositories/`: Truy vấn và ghi dữ liệu vào MySQL.
+- `src/db.py`: Thiết lập kết nối cơ sở dữ liệu.
+- `src/main.py`: Khởi tạo ứng dụng FastAPI và đăng ký các router.
+
+### 6.2. Chức năng đã hiện thực
+
+- Tra cứu khách hàng theo số điện thoại.
+- Tạo hồ sơ khách hàng mới và kiểm tra số điện thoại trùng.
+- Tra cứu thiết bị theo Serial/IMEI.
+- Tạo phiếu bảo hành với mã phiếu tự động.
+- Xác định hạn cam kết dựa trên mức ưu tiên và giờ làm việc.
+- Kiểm tra thông tin khách hàng và thiết bị trước khi tạo phiếu.
+
+API tạo phiếu bảo hành đã được kiểm thử thành công với mã phản hồi HTTP 201. Mã nguồn cũng đã được kiểm tra cú pháp bằng `python -m compileall src`, và hàm tính SLA đã được thử nghiệm riêng.
+
+### 6.3. Cơ sở dữ liệu
+
+Đã có các script:
+
+- `migrations/001_create_tables.sql`: Khởi tạo các bảng khách hàng, nhân viên, thiết bị, nhóm sự cố, mức ưu tiên, phiếu bảo hành và lịch sử trạng thái.
+- `seed/001_seed_data.sql`: Nạp dữ liệu mẫu cho nhân viên, nhóm sự cố, mức ưu tiên, khách hàng và thiết bị.
+
+Cần tiếp tục rà soát tính nhất quán giữa migration, dữ liệu mẫu và DDL đã thống nhất trong BT1.
+
+### 6.4. Tài liệu và cấu hình
+
+- Đã có tài liệu SRS, API Contract, Use Case và AI Disclosure.
+- Đã tạo `docs/thay-doi-thiet-ke.md` để ghi nhận các thay đổi thiết kế sau phản hồi BT1.
+- Đã có `.gitignore` và `.env.example`; đang rà soát để bảo đảm không đưa thông tin nhạy cảm và file sinh ra khi chạy chương trình lên GitHub.
+
+### 6.5. Công việc tiếp theo
+
+- Hoàn thiện CRUD cho entity chính theo yêu cầu Track SE.
+- Kiểm tra và hoàn thiện migration, seed dữ liệu.
+- Bổ sung ảnh minh chứng kết quả chạy API vào `docs/`.
+- Hoàn thiện nội dung báo cáo thay đổi thiết kế và cập nhật README.
+- Tạo ít nhất hai commit mới theo chuẩn Conventional Commits và push các sản phẩm lên GitHub.
 
 ## 7. Phạm vi và giới hạn
 
