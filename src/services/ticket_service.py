@@ -5,9 +5,11 @@ from src.repositories.ticket_repository import (
     create_ticket,
     get_ticket_options,
     customer_and_device_exist,
+    get_all_tickets,
+    get_ticket_by_id,
+    update_ticket,
+    delete_ticket,
 )
-
-
 SLA_BY_PRIORITY = {
     "CAO": 24,
     "TRUNG_BINH": 72,
@@ -133,3 +135,83 @@ def add_ticket(
         description=description,
         commitment_at=commitment_at,
     )
+def list_tickets():
+    return get_all_tickets()
+
+
+def find_ticket(ticket_id: int):
+    if ticket_id <= 0:
+        raise ValueError("Mã phiếu không hợp lệ")
+
+    return get_ticket_by_id(ticket_id)
+def edit_ticket(
+    ticket_id: int,
+    description: str,
+    issue_category: str,
+    priority: str,
+):
+    description = description.strip()
+    issue_category = issue_category.strip().upper()
+    priority = priority.strip().upper()
+
+    if ticket_id <= 0:
+        raise ValueError("Mã phiếu không hợp lệ")
+
+    if not description:
+        raise ValueError("Mô tả lỗi không được để trống")
+
+    existing_ticket = get_ticket_by_id(ticket_id)
+
+    if existing_ticket is None:
+        raise LookupError("Không tìm thấy phiếu bảo hành")
+
+    if existing_ticket["status"] != "MỚI":
+        raise ValueError(
+            "Chỉ được cập nhật phiếu đang ở trạng thái MỚI"
+        )
+
+    if priority not in SLA_BY_PRIORITY:
+        raise ValueError("Mức ưu tiên không hợp lệ")
+
+    issue_type, priority_record = get_ticket_options(
+        issue_category,
+        priority,
+    )
+
+    if issue_type is None:
+        raise ValueError("Loại sự cố không hợp lệ")
+
+    if priority_record is None:
+        raise ValueError("Mức ưu tiên không hợp lệ")
+
+    commitment_at = add_working_hours(
+        existing_ticket["received_at"],
+        SLA_BY_PRIORITY[priority],
+    )
+
+    updated = update_ticket(
+        ticket_id=ticket_id,
+        description=description,
+        issue_type_id=issue_type["issue_type_id"],
+        priority_id=priority_record["priority_id"],
+        commitment_at=commitment_at,
+    )
+
+    if not updated:
+        raise LookupError("Không tìm thấy phiếu bảo hành")
+
+    return get_ticket_by_id(ticket_id)
+
+def remove_ticket(ticket_id: int):
+    if ticket_id <= 0:
+        raise ValueError("Mã phiếu không hợp lệ")
+
+    deleted = delete_ticket(ticket_id)
+
+    if not deleted:
+        raise LookupError("Không tìm thấy phiếu bảo hành")
+
+    return {
+        "message": "Xóa phiếu bảo hành thành công",
+        "ticket_id": ticket_id,
+    }
