@@ -62,33 +62,59 @@ http://127.0.0.1:8000/docs
 **Lưu ý:** Không đưa file `.env`, mật khẩu cơ sở dữ liệu hoặc khóa bí mật lên GitHub. Chỉ sử dụng `.env.example` để cung cấp cấu hình mẫu.
 Không yêu cầu khởi chạy server hoặc kết nối cơ sở dữ liệu để đọc và kiểm tra các tài liệu phân tích.
 
-## 3. Cấu trúc repository
+## ## 3. Cấu trúc repository
 
 ```text
 Chuyen-de-tot-nghiep1/
-├── diagrams/
+├── Diagram/
 │   ├── business_flow_L2.drawio
-│   └── use_case_L2.drawio
+│   ├── Database.drawio
+│   ├── MÔ HÌNH.drawio
+│   ├── use_case_L2.drawio
+│   └── Wireframe1.drawio
 │
 ├── docs/
+│   ├── evidence/
 │   ├── ai-disclosure.md
 │   ├── api-contract.md
+│   ├── api-test-results.md
 │   ├── srs.md
+│   ├── thay-doi-thiet-ke.md
 │   └── usecase.drawio
+│
+├── migrations/
+│   └── 001_create_tables.sql
+│
+├── seed/
+│   └── 001_seed_data.sql
+│
+├── src/
+│   ├── routes/
+│   ├── services/
+│   ├── repositories/
+│   ├── db.py
+│   └── main.py
 │
 ├── .env.example
 ├── .gitignore
 └── README.md
 ```
 
+*Lưu ý: Cây thư mục trên thể hiện các thành phần chính. Tên và số lượng tệp cần được đối chiếu với repository thực tế.*
+
 **Chức năng các thư mục:**
 
-- `docs/`: Lưu tài liệu đặc tả, phân tích yêu cầu và sơ đồ Use Case.
-- `diagrams/`: Lưu các sơ đồ mô tả luồng nghiệp vụ và Use Case.
-- `.env.example`: Cung cấp mẫu các biến môi trường nếu cần cấu hình trong giai đoạn phát triển.
-- `.gitignore`: Xác định các tệp và thư mục không đưa vào Git.
-- `README.md`: Giới thiệu đề tài, cấu trúc repository và các tài liệu đã thực hiện.
-
+- `src/routes/`: Tiếp nhận và định tuyến các yêu cầu HTTP.
+- `src/services/`: Xử lý logic nghiệp vụ.
+- `src/repositories/`: Thực hiện truy vấn và thao tác dữ liệu.
+- `migrations/`: Lưu các script SQL khởi tạo hoặc thay đổi cấu trúc cơ sở dữ liệu.
+- `seed/`: Lưu script tạo dữ liệu mẫu.
+- `docs/`: Lưu tài liệu phân tích, đặc tả, API Contract, báo cáo thay đổi thiết kế và kết quả kiểm thử.
+- `docs/evidence/`: Lưu ảnh minh chứng kiểm thử API.
+- `Diagram/`: Lưu các sơ đồ nghiệp vụ, cơ sở dữ liệu và giao diện.
+- `.env.example`: Cung cấp mẫu biến môi trường.
+- `.gitignore`: Loại trừ các tệp không nên đưa vào Git.
+- `README.md`: Giới thiệu đề tài, môi trường và trạng thái thực hiện.
 ## 4. Danh sách tài liệu
 
 | Tài liệu | Nội dung |
@@ -153,16 +179,31 @@ Dự án đã chuyển từ giai đoạn phân tích và đặc tả yêu cầu 
 - `src/db.py`: Thiết lập kết nối cơ sở dữ liệu.
 - `src/main.py`: Khởi tạo ứng dụng FastAPI và đăng ký các router.
 
-### 6.2. Chức năng đã hiện thực
+### ### 6.2. Chức năng đã hiện thực và kiểm thử
+
+Các chức năng backend ban đầu đã được triển khai cho luồng L2, bao gồm:
 
 - Tra cứu khách hàng theo số điện thoại.
-- Tạo hồ sơ khách hàng mới và kiểm tra số điện thoại trùng.
+- Tạo hồ sơ khách hàng mới và phát hiện số điện thoại trùng.
 - Tra cứu thiết bị theo Serial/IMEI.
 - Tạo phiếu bảo hành với mã phiếu tự động.
-- Xác định hạn cam kết dựa trên mức ưu tiên và giờ làm việc.
-- Kiểm tra thông tin khách hàng và thiết bị trước khi tạo phiếu.
+- Xác định hạn cam kết xử lý theo quy tắc SLA.
+- Kiểm tra sự tồn tại của khách hàng và mối liên hệ giữa khách hàng với thiết bị trước khi tạo phiếu.
 
-API tạo phiếu bảo hành đã được kiểm thử thành công với mã phản hồi HTTP 201. Mã nguồn cũng đã được kiểm tra cú pháp bằng `python -m compileall src`, và hàm tính SLA đã được thử nghiệm riêng.
+Các API đã được kiểm thử trên Swagger UI với các trường hợp thành công và ngoại lệ:
+
+- Tạo khách hàng thành công: HTTP 201.
+- Tra cứu khách hàng và thiết bị thành công: HTTP 200.
+- Tạo phiếu bảo hành thành công: HTTP 201.
+- Số điện thoại bị trùng: HTTP 400.
+- Không tìm thấy thiết bị: HTTP 404.
+- Khách hàng không hợp lệ hoặc thiết bị không thuộc khách hàng: HTTP 400.
+- Mức ưu tiên không hợp lệ: HTTP 400.
+- Thiếu trường bắt buộc: HTTP 422.
+
+Kết quả và ảnh minh chứng được lưu trong `docs/api-test-results.md` và `docs/evidence/`. Mã nguồn cũng đã được kiểm tra cú pháp bằng `python -m compileall src`.
+
+**Lưu ý:** Các chức năng đã kiểm thử nêu trên chưa đồng nghĩa với việc toàn bộ CRUD của entity chính đã hoàn thành.
 
 ### 6.3. Cơ sở dữ liệu
 
@@ -173,19 +214,22 @@ API tạo phiếu bảo hành đã được kiểm thử thành công với mã 
 
 Cần tiếp tục rà soát tính nhất quán giữa migration, dữ liệu mẫu và DDL đã thống nhất trong BT1.
 
-### 6.4. Tài liệu và cấu hình
+### ### 6.4. Tài liệu và cấu hình
 
 - Đã có tài liệu SRS, API Contract, Use Case và AI Disclosure.
 - Đã tạo `docs/thay-doi-thiet-ke.md` để ghi nhận các thay đổi thiết kế sau phản hồi BT1.
-- Đã có `.gitignore` và `.env.example`; đang rà soát để bảo đảm không đưa thông tin nhạy cảm và file sinh ra khi chạy chương trình lên GitHub.
+- Đã tạo `docs/api-test-results.md` để tổng hợp các trường hợp kiểm thử API.
+- Đã lưu ảnh minh chứng kiểm thử trong `docs/evidence/`.
+- Đã có `.gitignore` và `.env.example`; cần bảo đảm file `.env`, thông tin đăng nhập và các dữ liệu nhạy cảm không được đưa lên GitHub.
+- Tiếp tục đối chiếu migration và seed dữ liệu với thiết kế cơ sở dữ liệu đã thống nhất trong BT1.
 
-### 6.5. Công việc tiếp theo
+### ### 6.5. Công việc tiếp theo
 
-- Hoàn thiện CRUD cho entity chính theo yêu cầu Track SE.
-- Kiểm tra và hoàn thiện migration, seed dữ liệu.
-- Bổ sung ảnh minh chứng kết quả chạy API vào `docs/`.
-- Hoàn thiện nội dung báo cáo thay đổi thiết kế và cập nhật README.
-- Tạo ít nhất hai commit mới theo chuẩn Conventional Commits và push các sản phẩm lên GitHub.
+- Hoàn thiện và kiểm thử các thao tác CRUD cho entity chính theo yêu cầu Track SE.
+- Rà soát tính nhất quán giữa migration, seed dữ liệu và DDL đã thống nhất trong BT1.
+- Kiểm tra `.gitignore` và `.env.example`, bảo đảm không đưa thông tin nhạy cảm lên GitHub.
+- Bổ sung kiểm thử cho các trường hợp nghiệp vụ chưa được bao phủ.
+- Tiếp tục cập nhật tài liệu khi có thay đổi về thiết kế hoặc triển khai.
 
 ## 7. Phạm vi và giới hạn
 
