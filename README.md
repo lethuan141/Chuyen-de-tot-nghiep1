@@ -1,5 +1,5 @@
 # Smart CRM – Mekong Mobile
-1. Giới thiệu đề tài
+## 1. Giới thiệu đề tài
 Đề tài tập trung phân tích và triển khai bước đầu Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành trong hệ thống Smart CRM của Mekong Mobile.
 
 Mục tiêu là phân tích yêu cầu nghiệp vụ và chuyển đổi thành các tài liệu đặc tả phần mềm phục vụ thiết kế, phát triển và kiểm thử hệ thống, bao gồm SRS, User Story, Use Case, Business Flow và API Contract.
@@ -15,10 +15,10 @@ Ghi nhận mô tả lỗi.
 Phân loại nhóm sự cố.
 Xác định mức độ ưu tiên.
 Sinh hạn cam kết xử lý.
-2. Môi trường thực hiện
+## 2. Môi trường thực hiện
 Dự án sử dụng Python, FastAPI và MySQL để xây dựng API phục vụ luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
-2.1. Yêu cầu môi trường
+### 2.1. Yêu cầu môi trường
 Hệ điều hành: Windows 10/11.
 Ngôn ngữ lập trình: Python 3.11.
 Framework backend: FastAPI 0.115.6.
@@ -30,7 +30,7 @@ Quản lý mã nguồn: Git và GitHub.
 Công cụ kiểm thử API: Swagger UI tại /docs.
 Công cụ chỉnh sửa: Visual Studio Code hoặc trình soạn thảo tương đương.
 
-2.2. Cài đặt và khởi chạy
+### 2.2. Cài đặt và khởi chạy
 
 Bước 1: Cài đặt thư viện backend
 
@@ -92,7 +92,7 @@ python -m pytest -v test_sla.py
 
 Lưu ý: Backend và frontend cần chạy trong hai cửa sổ terminal riêng.
 
-3. Cấu trúc repository
+## 3. Cấu trúc repository
 Chuyen-de-tot-nghiep1/
 ├── Diagram/
 ├── docs/
@@ -133,7 +133,7 @@ Chức năng chính:
 - `migrations/`, `seed/`: Khởi tạo cấu trúc và dữ liệu mẫu.
 - `docs/evidence/`: Lưu ảnh minh chứng kiểm thử.
 - `test_sla.py`: Kiểm thử các quy tắc tính thời hạn SLA.
-4. Danh sách tài liệu
+## 4. Danh sách tài liệu
 Tài liệu	Nội dung
 docs/srs.md	Đặc tả yêu cầu phần mềm, User Story, Acceptance Criteria, FR, NFR và Traceability.
 docs/usecase.drawio	Sơ đồ Use Case được lưu trong thư mục tài liệu.
@@ -148,16 +148,16 @@ Diagram/MÔ HÌNH.drawio	Sơ đồ mô hình hệ thống.
 Diagram/Wireframe1.drawio	Sơ đồ phác thảo giao diện.
 Các tệp .drawio có thể được mở và chỉnh sửa bằng draw.io Desktop hoặc draw.io trên trình duyệt.
 
-5. Luồng nghiệp vụ được phân tích
+## 5. Luồng nghiệp vụ được phân tích
 Mã luồng: L2
 
 Tên luồng: Tiếp nhận và phân loại yêu cầu bảo hành.
 
-5.1. Actor
+### 5.1. Actor
 Nhân viên tiếp nhận: Tiếp nhận thông tin khách hàng, thiết bị và yêu cầu bảo hành.
 Quản lý trung tâm: Hỗ trợ xác minh tình trạng bảo hành trong các trường hợp cần kiểm tra thêm.
 Hệ thống Smart CRM: Kiểm tra dữ liệu, lưu thông tin phiếu và xác định hạn cam kết theo quy tắc nghiệp vụ.
-5.2. Danh sách Use Case
+### 5.2. Danh sách Use Case
 Mã	Tên Use Case
 UC01	Tra cứu khách hàng
 UC02	Tạo hồ sơ khách hàng
@@ -168,7 +168,7 @@ UC06	Ghi nhận mô tả lỗi
 UC07	Phân loại nhóm sự cố
 UC08	Xác định mức ưu tiên
 UC09	Sinh hạn cam kết
-5.3. Mô tả khái quát quy trình
+### 5.3. Mô tả khái quát quy trình
 Nhân viên tiếp nhận tra cứu thông tin khách hàng bằng số điện thoại.
 Nếu chưa có hồ sơ phù hợp, nhân viên tạo hồ sơ khách hàng mới.
 Nhân viên tra cứu và ghi nhận thiết bị bằng Serial hoặc IMEI.
@@ -177,10 +177,10 @@ Nhân viên ghi nhận mô tả lỗi của khách hàng.
 Nhân viên phân loại nhóm sự cố và xác định mức ưu tiên.
 Nhân viên tạo phiếu bảo hành với các thông tin bắt buộc hợp lệ.
 Hệ thống sinh mã phiếu, xác định hạn cam kết theo quy tắc nghiệp vụ và lưu thông tin cần thiết.
-6. Trạng thái tiến độ hiện tại
+## 6. Trạng thái tiến độ hiện tại
 Dự án đã chuyển từ giai đoạn phân tích, đặc tả yêu cầu sang giai đoạn hiện thực và kiểm thử các API backend ban đầu cho luồng L2.
 
-6.1. Cấu trúc mã nguồn
+### 6.1. Cấu trúc mã nguồn
 Đã tổ chức mã nguồn backend theo kiến trúc phân lớp:
 
 src/routes/: Tiếp nhận và xử lý các yêu cầu HTTP.
@@ -190,7 +190,7 @@ src/db.py: Thiết lập kết nối cơ sở dữ liệu.
 src/main.py: Khởi tạo ứng dụng FastAPI và đăng ký router.
 Đã chạy lệnh python -m compileall src để kiểm tra cú pháp mã nguồn.
 
-6.2. Chức năng đã hiện thực và kiểm thử
+### 6.2. Chức năng đã hiện thực và kiểm thử
 Các chức năng backend đã triển khai gồm tra cứu và tạo hồ sơ khách hàng, tra cứu thiết bị, tạo phiếu bảo hành và các thao tác CRUD đối với phiếu bảo hành.
 
 Các thao tác CRUD của phiếu bảo hành đã được kiểm thử trên Swagger UI:
@@ -208,14 +208,14 @@ Một số trường hợp dữ liệu khách hàng, thiết bị hoặc mức �
 Thiếu trường bắt buộc khi tạo phiếu: HTTP 422.
 Kết quả chi tiết được tổng hợp trong docs/api-test-results.md. Cần tiếp tục bảo đảm tài liệu kiểm thử và ảnh minh chứng phản ánh đúng những trường hợp đã chạy thực tế.
 
-6.3. Cơ sở dữ liệu
+### 6.3. Cơ sở dữ liệu
 Repository có các script dự kiến phục vụ khởi tạo cấu trúc và dữ liệu mẫu:
 
 migrations/001_create_tables.sql: Script tạo các bảng nghiệp vụ.
 seed/001_seed_data.sql: Script nạp dữ liệu mẫu.
 Cần tiếp tục rà soát cấu trúc bảng, khóa ngoại, ràng buộc dữ liệu và tính nhất quán giữa migration, seed với thiết kế cơ sở dữ liệu đã thống nhất trong BT1 trước khi xác nhận hoàn thành hạng mục này.
 
-6.4. Tài liệu, bảo mật và minh chứng
+### 6.4. Tài liệu, bảo mật và minh chứng
 Đã có tài liệu SRS, API Contract, Use Case và AI Disclosure.
 Đã cập nhật docs/thay-doi-thiet-ke.md để ghi nhận các quyết định thiết kế và tiến độ Buổi 08.
 Đã có docs/api-test-results.md để tổng hợp các trường hợp kiểm thử API.
@@ -223,7 +223,7 @@ Cần tiếp tục rà soát cấu trúc bảng, khóa ngoại, ràng buộc d�
 Đã kiểm tra .gitignore để bỏ qua file .env và các tệp không nên đưa vào Git.
 Đã kiểm tra .env.example; thông tin mật khẩu trong tệp mẫu sử dụng giá trị giữ chỗ.
 Cần bổ sung ảnh minh chứng cho các thao tác CRUD còn thiếu nếu chưa được lưu đầy đủ.
-6.5. Git và phiên bản mã nguồn
+### 6.5. Git và phiên bản mã nguồn
 
 Các thay đổi của dự án đã được quản lý bằng Git và đẩy lên nhánh `main` của GitHub.
 
@@ -240,7 +240,7 @@ Repository: https://github.com/lethuan141/Chuyen-de-tot-nghiep1
 Trạng thái đồng bộ và tính sạch của working tree cần được xác nhận bằng kết quả Git tại thời điểm kiểm tra.
 
 
-6.6. Tiến độ Buổi 10
+### 6.6. Tiến độ Buổi 10
 
 Frontend
 
@@ -269,11 +269,11 @@ Tài liệu và quản lý mã nguồn
 - Việc thiết lập dự án từ một bản clone sạch cần được xác nhận sau khi thực hiện kiểm tra thực tế.
 
 Các hạng mục chỉ được xác nhận hoàn thành khi đã thực hiện và kiểm tra kết quả thực tế.
-7. Phạm vi và giới hạn
+## 7. Phạm vi và giới hạn
 Repository tập trung vào phân tích nghiệp vụ, đặc tả yêu cầu và triển khai bước đầu các API backend cho Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
 Các API được mô tả trong docs/api-contract.md cần được đối chiếu với mã nguồn thực tế; không mặc định rằng mọi API trong tài liệu đều đã được triển khai. Dự án cũng chưa được khẳng định là đã hoàn thành kiểm thử tích hợp hoặc triển khai trên môi trường vận hành thực tế của Mekong Mobile.
-8. Kết luận
+## 8. Kết luận
 Repository Smart CRM – Mekong Mobile tập trung vào phân tích yêu cầu và triển khai bước đầu Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
 Dự án đã xây dựng các tài liệu đặc tả nghiệp vụ, triển khai các API backend cho phiếu bảo hành, phát triển giao diện frontend phục vụ danh sách, xem chi tiết và tạo phiếu. Ngoài ra, bộ kiểm thử SLA đã được bổ sung với 6 unit test đạt kết quả thành công, đồng thời frontend đã được kiểm tra production build.
