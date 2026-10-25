@@ -1,4 +1,4 @@
-mart CRM – Mekong Mobile
+# Smart CRM – Mekong Mobile
 1. Giới thiệu đề tài
 Đề tài tập trung phân tích và triển khai bước đầu Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành trong hệ thống Smart CRM của Mekong Mobile.
 
@@ -30,59 +30,67 @@ Quản lý mã nguồn: Git và GitHub.
 Công cụ kiểm thử API: Swagger UI tại /docs.
 Công cụ chỉnh sửa: Visual Studio Code hoặc trình soạn thảo tương đương.
 
-### 2.2. Cài đặt và khởi chạy
+2.2. Cài đặt và khởi chạy
 
-**Bước 1: Cài đặt thư viện backend**
+Bước 1: Cài đặt thư viện backend
 
-bash
+```bash
 pip install fastapi==0.115.6 uvicorn==0.34.0 PyMySQL python-dotenv
+```
 
+Bước 2: Cấu hình môi trường
 
-**Bước 2: Cấu hình môi trường**
+Tạo file `.env` tại thư mục gốc theo mẫu `.env.example` và cấu hình thông tin kết nối MySQL. Không đưa thông tin mật khẩu thật lên GitHub.
 
-Tạo file `.env` tại thư mục gốc theo mẫu `.env.example` và cấu hình thông tin kết nối MySQL.
-
-**Bước 3: Khởi tạo cơ sở dữ liệu**
+Bước 3: Khởi tạo cơ sở dữ liệu
 
 Đảm bảo MySQL đang hoạt động, tạo cơ sở dữ liệu `smart_crm_mekong_mobile` và thực hiện các script SQL trong `migrations/` và `seed/`.
 
-**Bước 4: Khởi chạy backend**
+Bước 4: Khởi chạy backend
 
-bash
+```bash
 python -m uvicorn src.main:app --reload
+```
 
+Bước 5: Cài đặt thư viện frontend
 
-**Bước 5: Cài đặt thư viện frontend**
+Mở terminal mới tại thư mục dự án và chạy:
 
-bash
+```bash
 cd frontend
 npm ci
+```
 
+Bước 6: Khởi chạy frontend
 
-**Bước 6: Khởi chạy frontend**
+Tại thư mục `frontend`, chạy:
 
-bash
+```bash
 npm run dev
+```
 
+Bước 7: Kiểm tra frontend production build
 
-**Bước 7: Kiểm tra frontend production build**
+Tại thư mục `frontend`, chạy:
 
-bash
+```bash
 npm run build
+```
 
+Bước 8: Chạy unit test backend
 
-**Bước 8: Chạy unit test backend**
+Tại thư mục gốc dự án, chạy:
 
-bash
+```bash
 python -m pytest -v test_sla.py
+```
 
-
-**Địa chỉ truy cập:**
+Địa chỉ truy cập
 
 - Frontend: địa chỉ được Vite hiển thị trong terminal.
 - Backend Swagger UI: `http://127.0.0.1:8000/docs`.
 
-Lưu ý: Backend và frontend cần chạy trong hai cửa sổ terminal riêng. Không đưa file `.env`, mật khẩu hoặc khóa bí mật lên GitHub.
+Lưu ý: Backend và frontend cần chạy trong hai cửa sổ terminal riêng.
 
 3. Cấu trúc repository
 Chuyen-de-tot-nghiep1/
@@ -216,48 +224,58 @@ Cần tiếp tục rà soát cấu trúc bảng, khóa ngoại, ràng buộc d�
 Đã kiểm tra .env.example; thông tin mật khẩu trong tệp mẫu sử dụng giá trị giữ chỗ.
 Cần bổ sung ảnh minh chứng cho các thao tác CRUD còn thiếu nếu chưa được lưu đầy đủ.
 6.5. Git và phiên bản mã nguồn
-Đã tạo và đẩy các commit sau lên nhánh main:
 
-CRUD phiếu bảo hành: afc1d29 – feat: complete warranty ticket CRUD API.
-Cập nhật nhật ký thay đổi thiết kế: 82ea8d3 – docs: update design change log for lab 08.
-Các commit có thể xem tại:
+Các thay đổi của dự án đã được quản lý bằng Git và đẩy lên nhánh `main` của GitHub.
 
-Commit CRUD phiếu bảo hành
-Commit nhật ký thay đổi thiết kế
-Sau khi push, Git đã báo nhánh main đồng bộ với origin/main và working tree sạch.
+Một số commit tiêu biểu:
+
+- `afc1d29` – `feat: complete warranty ticket CRUD API`
+- `82ea8d3` – `docs: update design change log for lab 08`
+- `ce83a3e` – `test: complete warranty ticket E2E evidence`
+
+Commit mới nhất được ghi nhận trong quá trình thực hiện Buổi 10 là `ce83a3e`.
+
+Repository: https://github.com/lethuan141/Chuyen-de-tot-nghiep1
+
+Trạng thái đồng bộ và tính sạch của working tree cần được xác nhận bằng kết quả Git tại thời điểm kiểm tra.
 
 
-### 6.6. Tiến độ Buổi 10
+6.6. Tiến độ Buổi 10
 
-**Frontend**
+Frontend
 
-- [x] Xây dựng giao diện React/Vite cho danh sách phiếu bảo hành.
-- [x] Xây dựng giao diện xem chi tiết phiếu bảo hành.
-- [x] Xây dựng giao diện tiếp nhận và tạo phiếu bảo hành.
-- [x] Tổ chức các hàm gọi API trong `frontend/src/api/client.js`.
-- [x] Sử dụng `DataState` để xử lý trạng thái dữ liệu trên màn hình danh sách và chi tiết.
+- Đã xây dựng giao diện React/Vite cho danh sách phiếu bảo hành.
+- Đã xây dựng giao diện xem chi tiết phiếu bảo hành.
+- Đã xây dựng giao diện tiếp nhận và tạo phiếu bảo hành.
+- Đã tổ chức các hàm gọi API trong `frontend/src/api/client.js`.
+- Đã sử dụng `DataState` để xử lý trạng thái dữ liệu trên màn hình danh sách và chi tiết.
+- Đã điều chỉnh giá trị mức ưu tiên trên form tạo phiếu để phù hợp với các giá trị backend sử dụng.
 
-**Kiểm thử**
+Kiểm thử
 
-- [x] Bổ sung 6 unit test cho các quy tắc tính SLA.
-- [x] Kiểm tra các trường hợp tính giờ làm việc, nghỉ trưa, cuối tuần và giá trị biên.
-- [ ] Hoàn thành kiểm thử E2E từ tạo phiếu đến xem chi tiết và danh sách.
-- [ ] Lưu ảnh minh chứng luồng E2E trong `docs/evidence/`.
-- [ ] Xác nhận frontend build và lint thành công.
+- Đã bổ sung 6 unit test cho các quy tắc tính SLA; kết quả: 6/6 test passed.
+- Đã kiểm tra các trường hợp tính giờ làm việc, nghỉ trưa, cuối tuần và giá trị biên trong bộ kiểm thử SLA.
+- Đã lưu ảnh minh chứng giao diện tạo phiếu, danh sách phiếu và chi tiết phiếu tại `docs/evidence/`.
+- Đã chạy frontend production build bằng `npm run build`; kết quả build thành công.
+- Đã kiểm tra cú pháp và kết quả kiểm thử backend theo các lệnh đã thực hiện.
+- Kiểm thử E2E cần được xác nhận dựa trên việc thực chạy luồng tạo phiếu, xem chi tiết và xem danh sách trên giao diện. Không xem việc build thành công hoặc unit test đạt là bằng chứng duy nhất cho kiểm thử E2E.
+- Kết quả lint cần được ghi theo kết quả chạy thực tế, bao gồm cả cảnh báo nếu có.
 
-**Tài liệu và quản lý mã nguồn**
+Tài liệu và quản lý mã nguồn
 
-- [ ] Cập nhật README với hướng dẫn cài đặt, khởi chạy frontend/backend và chạy kiểm thử.
-- [ ] Kiểm tra khả năng thiết lập dự án từ một bản clone sạch.
-- [ ] Commit và push toàn bộ thay đổi Buổi 10 lên GitHub.
+- Đã cập nhật README với hướng dẫn cài đặt, khởi chạy frontend/backend và chạy kiểm thử.
+- Đã đưa các thay đổi Buổi 10 và ảnh minh chứng vào Git.
+- Đã commit và push thay đổi lên nhánh `main`; commit mới nhất ghi nhận công việc Buổi 10 là `ce83a3e` (`test: complete warranty ticket E2E evidence`).
+- Việc thiết lập dự án từ một bản clone sạch cần được xác nhận sau khi thực hiện kiểm tra thực tế.
 
-Các mục chỉ được đánh dấu hoàn thành sau khi đã thực hiện và xác nhận kết quả thực tế.
+Các hạng mục chỉ được xác nhận hoàn thành khi đã thực hiện và kiểm tra kết quả thực tế.
 7. Phạm vi và giới hạn
 Repository tập trung vào phân tích nghiệp vụ, đặc tả yêu cầu và triển khai bước đầu các API backend cho Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
 Các API được mô tả trong docs/api-contract.md cần được đối chiếu với mã nguồn thực tế; không mặc định rằng mọi API trong tài liệu đều đã được triển khai. Dự án cũng chưa được khẳng định là đã hoàn thành kiểm thử tích hợp hoặc triển khai trên môi trường vận hành thực tế của Mekong Mobile.
-
 8. Kết luận
-Repository Smart CRM – Mekong Mobile là sản phẩm phân tích yêu cầu và triển khai backend bước đầu cho Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
+Repository Smart CRM – Mekong Mobile tập trung vào phân tích yêu cầu và triển khai bước đầu Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
 
-Các tài liệu được tổ chức nhằm thể hiện mối liên hệ giữa nghiệp vụ, User Story, Use Case, yêu cầu chức năng, yêu cầu phi chức năng và API Contract. Việc triển khai CRUD phiếu bảo hành là bước tiếp theo từ đặc tả sang hiện thực, tạo cơ sở để tiếp tục hoàn thiện cơ sở dữ liệu, kiểm thử và các chức năng nghiệp vụ còn lại.
+Dự án đã xây dựng các tài liệu đặc tả nghiệp vụ, triển khai các API backend cho phiếu bảo hành, phát triển giao diện frontend phục vụ danh sách, xem chi tiết và tạo phiếu. Ngoài ra, bộ kiểm thử SLA đã được bổ sung với 6 unit test đạt kết quả thành công, đồng thời frontend đã được kiểm tra production build.
+
+Các kết quả này tạo cơ sở để tiếp tục hoàn thiện tính nhất quán giữa tài liệu và mã nguồn, kiểm thử tích hợp, rà soát cơ sở dữ liệu và nâng cao độ ổn định của hệ thống. Phạm vi hoàn thành cần được xác nhận dựa trên kết quả thực tế của từng hạng mục.
