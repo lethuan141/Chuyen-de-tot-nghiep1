@@ -1,4 +1,3 @@
-
 from datetime import datetime
 
 from src.db import get_connection
@@ -18,7 +17,6 @@ def create_ticket(
 
     try:
         with connection.cursor() as cursor:
-            # Tạo phiếu với mã tạm duy nhất
             cursor.execute(
                 """
                 INSERT INTO warranty_tickets (
@@ -49,7 +47,6 @@ def create_ticket(
 
             ticket_id = cursor.lastrowid
 
-            # Mã chính thức: BH-YYYYMMDD-XXXX
             ticket_date = datetime.now().strftime("%Y%m%d")
             final_code = f"BH-{ticket_date}-{ticket_id:04d}"
 
@@ -135,17 +132,21 @@ def customer_and_device_exist(
 
     finally:
         connection.close()
+
+
 def get_all_tickets():
     connection = get_connection()
 
     try:
         with connection.cursor() as cursor:
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT
                     wt.ticket_id,
                     wt.ticket_code,
                     wt.customer_id,
                     c.full_name AS customer_name,
+                    c.phone AS customer_phone,
                     wt.device_id,
                     d.serial_number,
                     it.name AS issue_category,
@@ -164,7 +165,8 @@ def get_all_tickets():
                 JOIN priorities p
                     ON wt.priority_id = p.priority_id
                 ORDER BY wt.ticket_id DESC
-            """)
+                """
+            )
 
             return cursor.fetchall()
 
@@ -177,12 +179,14 @@ def get_ticket_by_id(ticket_id: int):
 
     try:
         with connection.cursor() as cursor:
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT
                     wt.ticket_id,
                     wt.ticket_code,
                     wt.customer_id,
                     c.full_name AS customer_name,
+                    c.phone AS customer_phone,
                     wt.device_id,
                     d.serial_number,
                     it.name AS issue_category,
@@ -201,12 +205,15 @@ def get_ticket_by_id(ticket_id: int):
                 JOIN priorities p
                     ON wt.priority_id = p.priority_id
                 WHERE wt.ticket_id = %s
-            """, (ticket_id,))
+                """,
+                (ticket_id,),
+            )
 
             return cursor.fetchone()
 
     finally:
         connection.close()
+
 
 def update_ticket(
     ticket_id: int,
@@ -249,12 +256,12 @@ def update_ticket(
     finally:
         connection.close()
 
+
 def delete_ticket(ticket_id: int):
     connection = get_connection()
 
     try:
         with connection.cursor() as cursor:
-            # Kiểm tra phiếu có tồn tại không
             cursor.execute(
                 """
                 SELECT ticket_id
@@ -267,7 +274,6 @@ def delete_ticket(ticket_id: int):
             if cursor.fetchone() is None:
                 return False
 
-            # Không xóa nếu phiếu đã có lịch sử trạng thái
             cursor.execute(
                 """
                 SELECT history_id

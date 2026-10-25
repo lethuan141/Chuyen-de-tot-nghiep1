@@ -18,8 +18,11 @@ def get_customer_by_phone(phone: str):
     if customer is None:
         return None
 
+    customer_id = customer["customer_id"]
+
     return {
-        "customer_id": f"CUS{customer['customer_id']:03d}",
+        "customer_id": customer_id,
+        "customer_code": f"CUS{customer_id:03d}",
         "customer_name": customer["full_name"],
         "phone": customer["phone"],
     }
@@ -50,8 +53,8 @@ def add_customer(
         raise ValueError("Số điện thoại đã tồn tại")
 
     return create_customer(
-        customer_name,
-        phone,
-        email,
-        address,
-    )
+    customer_name,
+    phone,
+    email,
+    address,
+)
